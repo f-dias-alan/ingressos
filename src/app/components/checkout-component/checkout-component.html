@@ -1,1 +1,23 @@
-<p>checkout-component works!</p>
+<div class="checkout-wrapper">
+  <div class="checkout-header">
+    <span class="label">SEUS INGRESSOS</span>
+    <h1 class="title">CHECKOUT</h1>
+  </div>
+
+  <app-ticket-item
+    [nomedoEvento]="'Angular Conf 2026'"
+    [(quantidade)]="qtd"
+    (cancelar)="onCancelamento()"
+  ></app-ticket-item>
+
+  <div class="summary">
+    <div class="status-badge" [class.cancelled]="cancelado()">
+      <span class="dot"></span>
+      {{ mensagemStatus() }}
+    </div>
+    <div class="total-row">
+      <span class="total-label">TOTAL</span>
+      <span class="total-value">R$ {{ total() }}</span>
+    </div>
+  </div>
+</div>

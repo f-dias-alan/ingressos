@@ -1,1 +1,53 @@
-<p>ticket-item-component works!</p>
+<div class="ticket">
+  <!-- Topo perfurado -->
+  <div class="ticket-top">
+    <div class="event-meta">
+      <span class="event-tag">EVENTO</span>
+      <h2 class="event-name">{{ nomedoEvento() }}</h2>
+    </div>
+    <div class="ticket-number">#{{ quantidade().toString().padStart(3, '0') }}</div>
+  </div>
+
+  <!-- Separador estilo ticket -->
+  <div class="perforation">
+    <div class="circle left"></div>
+    <div class="dashes"></div>
+    <div class="circle right"></div>
+  </div>
+
+  <!-- Corpo do ticket -->
+  <div class="ticket-body">
+
+    <!-- Quantidade -->
+    <div class="qty-section">
+      <span class="qty-label">QTD</span>
+      <div class="qty-controls">
+        <button class="qty-btn" (click)="decrementar()">−</button>
+        <span class="qty-value">{{ quantidade() }}</span>
+        <button class="qty-btn" (click)="incrementar()">+</button>
+      </div>
+    </div>
+
+    <!-- Cupom -->
+    <div class="coupon-section">
+      <span class="qty-label">CUPOM</span>
+      <div class="coupon-row">
+        <input
+          #couponInput
+          type="text"
+          placeholder="Digite o código"
+          class="coupon-input"
+          (keydown.enter)="buscarCupom($event)"
+        />
+        <button class="coupon-btn" (click)="buscarCupomClick(couponInput)">→</button>
+      </div>
+      <div class="coupon-msg" *ngIf="cupomMsg()">{{ cupomMsg() }}</div>
+    </div>
+
+    <!-- Cancelar -->
+    <button class="cancel-btn" (click)="solicitarCancelamento()">
+      CANCELAR INGRESSO
+    </button>
+
+  </div>
+</div>
